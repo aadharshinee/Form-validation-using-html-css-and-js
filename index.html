@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19july form</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color: pink;
+        }
+        form {
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: aquamarine;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+        input[type="submit"],
+        button[type="submit"] {
+            background-color: greenyellow;
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: lightgreen;
+        }
+        .message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+        }
+        .success-message {
+            color: green;
+            text-align: center;
+        }
+        @media (min-width: 600px) {
+            form {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter all the details in the form</h1>
+    <form name="validateform" action="message.html" method="post" onsubmit="return validationform()">
+        <label for="fname">First Name:</label>
+        <input type="text" id="fname" name="fname"><br><br>
+        <label for="lname">Last Name:</label>
+        <input type="text" id="lname" name="lname"><br><br>
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city"><br><br>
+        <label for="phn">Phone Number:</label>
+        <input type="text" id="phn" name="phn"><br><br>
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="4" cols="50"></textarea><br><br>
+        <button type="submit" value="submit">Submit</button>
+        <div class="message" id="message"></div>
+    </form>
+    <script>
+        function validationform() {
+            var fname = document.validateform.fname.value;
+            var lname = document.validateform.lname.value;
+            var city = document.validateform.city.value;
+            var phn = document.validateform.phn.value;
+            var address = document.validateform.address.value;
+            var message = document.getElementById("message");
+            message.innerHTML = "";
+            message.classList.remove("error-message", "success-message");
+            if (fname == "" || lname == "" || city == "" || phn == "" || address == "") 
+            {
+                message.classList.add("error-message");
+                message.innerHTML = "Please fill all the fields.";
+                return false;
+            }
+            else 
+            {
+                message.classList.add("success-message");
+                message.innerHTML = "Form submitted successfully. Thank you for your response.";
+                document.validateform.reset();
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
